@@ -1,0 +1,7 @@
+= form_with url: '/search', method: :get, local: false, format: :js do |form|
+  = form.label :query, "Search for:"
+  = form.text_field :query
+  = form.submit "Search"
+
+
+#search-results

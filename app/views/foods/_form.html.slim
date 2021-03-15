@@ -1,0 +1,45 @@
+= form_for @food do |f|
+  - if @food.errors.any?
+    #error_explanation
+      h2 = "#{pluralize(@food.errors.count, "error")} prohibited this food from being saved:"
+      ul
+        - @food.errors.full_messages.each do |message|
+          li = message
+
+  .field
+    = f.label :name
+    = f.text_field :name
+  .field
+    = f.label :calories
+    = f.text_field :calories
+  .field
+    = f.label :water
+    = f.text_field :water
+  .field
+    = f.label :proteins
+    = f.text_field :proteins
+  .field
+    = f.label :carbs
+    = f.text_field :carbs
+  .field
+    = f.label :calcium
+    = f.text_field :calcium
+  .field
+    = f.label :phosphorus
+    = f.text_field :phosphorus
+  .field
+    = f.label :sodium
+    = f.text_field :sodium
+  .field
+    = f.label :iron
+    = f.text_field :iron
+  .field
+    = f.label :fat
+    = f.text_field :fat
+  .field
+    = f.label :potassium
+    = f.text_field :potassium
+  .field
+    = f.label :quantity
+    = f.text_field :quantity
+  .actions = f.submit

@@ -1,0 +1,43 @@
+h1 Listing foods
+
+table
+  thead
+    tr
+      th Name
+      th Calories
+      th Water
+      th Proteins
+      th Carbs
+      th Calcium
+      th Phosphorus
+      th Sodium
+      th Iron
+      th Fat
+      th Potassium
+      th Quantity
+      th
+      th
+      th
+
+  tbody
+    - @foods.each do |food|
+      tr
+        td = food.name
+        td = food.calories
+        td = food.water
+        td = food.proteins
+        td = food.carbs
+        td = food.calcium
+        td = food.phosphorus
+        td = food.sodium
+        td = food.iron
+        td = food.fat
+        td = food.potassium
+        td = food.quantity
+        td = link_to 'Show', food
+        td = link_to 'Edit', edit_food_path(food)
+        td = link_to 'Destroy', food, data: { confirm: 'Are you sure?' }, method: :delete
+
+br
+
+= link_to 'New Food', new_food_path

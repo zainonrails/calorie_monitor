@@ -1,0 +1,24 @@
+h1 Listing meals
+
+table
+  thead
+    tr
+      th Name
+      th Description
+      th Time
+
+  tbody
+    - @meals.each do |meal|
+      tr
+        td = meal.name
+        td = meal.description
+        td = meal.time
+        - meal.foods.each do |food|
+          td = food.name
+        td = link_to 'Show', meal
+        td = link_to 'Edit', edit_meal_path(meal)
+        td = link_to 'Destroy', meal, data: { confirm: 'Are you sure?' }, method: :delete
+
+br
+
+= link_to 'New Meal', new_meal_path
