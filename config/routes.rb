@@ -1,4 +1,10 @@
 Rails.application.routes.draw do
+  resources :intakes do
+    collection do
+      post 'meal_intake'
+      post 'food_intake'
+    end
+  end
   resources :foods
   resources :meals
   resources :foods do

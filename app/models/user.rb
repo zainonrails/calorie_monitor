@@ -6,5 +6,6 @@ class User < ApplicationRecord
 
   has_many :foods
   has_many :meals
-  # has_many :intakes
+  has_many :intakes
+  accepts_nested_attributes_for :intakes
 end

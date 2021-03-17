@@ -1,2 +1,3 @@
 |
-  $('#search-results').html("#{escape_javascript(render partial: 'results', locals: { foods: @foods })}");
+  $('#search-results').html("#{escape_javascript(render partial: 'results', locals: { foods: @foods, title: 'Default results' })}");
+  $('#user-search-results').html("#{escape_javascript(render partial: 'results', locals: { foods: @user_foods, title: 'User results' })}");

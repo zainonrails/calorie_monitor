@@ -1,0 +1,30 @@
+h1 Listing intakes
+
+table
+  thead
+    tr
+      th Time
+      th Calories
+      th Quantity
+      th Food name
+      th Food calories
+      th
+      th
+      th
+
+  tbody
+    - @intakes.each do |intake|
+      tr
+        td = intake.time
+        td = intake.calories
+        - intake.eatings.each do |eat|
+          td = eat.quantity
+          td = eat.eatable.calories
+          td = eat.eatable.name
+        / td = link_to 'Show', intake
+        / td = link_to 'Edit', edit_intake_path(intake)
+        / td = link_to 'Destroy', intake, data: { confirm: 'Are you sure?' }, method: :delete
+
+br
+
+= link_to 'New Intake', new_intake_path

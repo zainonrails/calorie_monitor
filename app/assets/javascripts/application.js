@@ -17,4 +17,6 @@
 //= require cocoon
 //= require select2
 //= require foods
+//= require jquery-ui/widgets/autocomplete
+//= require autocomplete-rails
 //= require_tree .

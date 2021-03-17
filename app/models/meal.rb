@@ -3,7 +3,7 @@ class Meal < ApplicationRecord
   has_many :meal_foods, inverse_of: :meal
   has_many :foods, through: :meal_foods
   accepts_nested_attributes_for :meal_foods
-  # has_many :intake, as: :eatable
+  has_many :eating, as: :eatable
 
 
   def calculate_calories

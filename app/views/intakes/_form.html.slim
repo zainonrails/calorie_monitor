@@ -1,0 +1,26 @@
+= form_with model: @intake, url: meal_intake_intakes_path, method: :post do |f|
+  - if @intake.errors.any?
+    #error_explanation
+      h2 = "#{pluralize(@intake.errors.count, "error")} prohibited this intake from being saved:"
+      ul
+        - @intake.errors.full_messages.each do |message|
+          li = message
+
+  .form-group
+    = f.label :time
+    = f.select :time, meal_time_select, class: 'form-control'
+
+  .intake_foods
+    = f.fields_for :eatings, Eating.new do |intake|
+      = render partial: 'intakes/eating_fields', locals: { f: intake  }
+      .links
+        = link_to_add_association 'Add food', f, :eatings, class: 'btn btn-info',
+                data: { partial: 'intakes/eating_fields', data_association_insertion_method: 'prepend' }
+
+  / .form-group
+  /   = f.label :food
+  /   = f.select :food, grouped_options_for_select(@foods, nil), { include_blank: true }, class: 'select2'
+  .form-group
+    = f.submit 'submit', class: 'btn btn-success'
+
+  #dynamic_intake_form

@@ -87,6 +87,7 @@
     <orderEntry type="library" scope="PROVIDED" name="rails (v5.2.4.5, RVM: ruby-2.6.6) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="rails-dom-testing (v2.0.3, RVM: ruby-2.6.6) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="rails-html-sanitizer (v1.3.0, RVM: ruby-2.6.6) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="rails-jquery-autocomplete (v1.0.5, RVM: ruby-2.6.6) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="railties (v5.2.4.5, RVM: ruby-2.6.6) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="rake (v13.0.3, RVM: ruby-2.6.6) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="rb-fsevent (v0.10.4, RVM: ruby-2.6.6) [gem]" level="application" />
@@ -133,6 +134,8 @@
         <option value="active_record:devise" />
         <option value="application_record" />
         <option value="assets" />
+        <option value="autocomplete:install" />
+        <option value="autocomplete:uncompressed" />
         <option value="channel" />
         <option value="cocoon:install" />
         <option value="coffee:assets" />
@@ -173,6 +176,8 @@
         <option value="active_record:devise" />
         <option value="application_record" />
         <option value="assets" />
+        <option value="autocomplete:install" />
+        <option value="autocomplete:uncompressed" />
         <option value="channel" />
         <option value="cocoon:install" />
         <option value="coffee:assets" />
