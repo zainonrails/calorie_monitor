@@ -5,6 +5,8 @@ Rails.application.routes.draw do
       post 'food_intake'
     end
   end
+
+  get 'profile', to: 'profiles#index'
   resources :foods
   resources :meals
   resources :foods do

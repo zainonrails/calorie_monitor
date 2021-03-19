@@ -2,8 +2,7 @@
   .form-group
     = f.hidden_field :eatable_type, value: 'Food'
     = f.label :food
-    = f.select('eatable_id', grouped_options_for_select(@foods, nil), { include_blank: true }, class: 'select2 form-control')
-
+    = f.select('eatable_id', grouped_options_for_select(@foods, nil), { include_blank: true }, class: 'select2-intake-foods form-control')
 
   .form-group
     = f.label :quantity

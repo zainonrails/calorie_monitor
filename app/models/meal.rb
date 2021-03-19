@@ -3,8 +3,9 @@ class Meal < ApplicationRecord
   has_many :meal_foods, inverse_of: :meal
   has_many :foods, through: :meal_foods
   accepts_nested_attributes_for :meal_foods
-  has_many :eating, as: :eatable
+  has_many :eatings, as: :eatable
 
+  scope :user_meals, -> { select('id', "CONCAT(name, ' - ',calories) as text") }
 
   def calculate_calories
     sum = 0
@@ -14,4 +15,6 @@ class Meal < ApplicationRecord
     self.calories = sum
     save
   end
+
+
 end

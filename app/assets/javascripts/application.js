@@ -14,9 +14,9 @@
 //= require activestorage
 //= require turbolinks
 //= require jquery3
-//= require cocoon
 //= require select2
 //= require foods
+//= require cocoon
 //= require jquery-ui/widgets/autocomplete
 //= require autocomplete-rails
 //= require_tree .

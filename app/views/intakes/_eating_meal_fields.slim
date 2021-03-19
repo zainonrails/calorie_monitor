@@ -1,0 +1,5 @@
+.nested-fields
+  .form-group
+    = f.hidden_field :eatable_type, value: 'Meal'
+    = f.label :meal
+    = f.select('eatable_id', food_select(@meals), { include_blank: true }, class: 'select2-intake-meals form-control')

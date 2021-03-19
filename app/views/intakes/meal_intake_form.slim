@@ -1,4 +1,4 @@
-= form_with model: @intake, method: :post do |f|
+= form_with model: @intake, url: meal_intake_intakes_path, method: :post do |f|
   - if @intake.errors.any?
     #error_explanation
       h2 = "#{pluralize(@intake.errors.count, "error")} prohibited this intake from being saved:"
@@ -10,19 +10,13 @@
     = f.label :time
     = f.select :time, meal_time_select, class: 'form-control'
 
-  .intake_foods
-    = f.fields_for :eatings do |intake|
-      = render partial: 'intakes/eating_fields', locals: { f: intake  }
-    .links
-      = link_to_add_association 'Add food', f, :eatings, class: 'btn btn-info',
-              data: { partial: 'intakes/eating_fields', data_association_insertion_method: 'append' }
-
-
   #div2
     .intake_meals
-      = f.fields_for :eatings, Eating.new do |intake|
+      = f.fields_for :eatings do |intake|
         = render partial: 'intakes/eating_meal_fields', locals: { f: intake }
-
+        .links
+          = link_to_add_association 'Add Meal', f, :eatings, class: 'btn btn-info',
+                  data: { partial: 'intakes/eating_meal_fields', data_association_insertion_method: 'append' }
   .form-group
     = f.submit 'submit', class: 'btn btn-success'
 

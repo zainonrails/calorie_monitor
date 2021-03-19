@@ -1,0 +1,6 @@
+<nav class="nav mb-5">
+  <a class="nav-link active" href=<%= profile_path %> >Profile</a>
+  <a class="nav-link active" href=<%= foods_path %> >Food</a>
+  <%= link_to 'Logout', destroy_user_session_path, method: :delete, class: 'nav-link' %>
+  <a class="nav-link active" href="#" ><%= current_user.name || 'Username' %></a>
+</nav>

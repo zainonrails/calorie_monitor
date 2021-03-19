@@ -1,5 +1,5 @@
 class MealsController < ApplicationController
-  before_action :set_meal, only: %i[ show edit update destroy ]
+  before_action :set_meal, only: %i[show edit update destroy]
 
   # GET /meals or /meals.json
   def index
