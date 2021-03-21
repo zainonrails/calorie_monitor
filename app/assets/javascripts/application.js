@@ -12,11 +12,95 @@
 //
 //= require rails-ujs
 //= require activestorage
-//= require turbolinks
 //= require jquery3
+//= require jquery.turbolinks
+//= require turbolinks
+//= require datatables
 //= require select2
 //= require foods
 //= require cocoon
 //= require jquery-ui/widgets/autocomplete
 //= require autocomplete-rails
 //= require_tree .
+
+
+document.addEventListener("turbolinks:load", () => {
+  $('[data-toggle="tooltip"]').tooltip()
+
+  $('input[type="file"]').change(function(e){
+    let fileName = e.target.files[0].name;
+    $('.custom-file-input').html(fileName)
+    document.getElementById('file').files[0].name;
+  });
+
+  // this is to initialize the first meal form on daily intake page
+  $('.select2-intake-meals').select2({
+    placeholder: 'Select a Meal.',
+    maximumSelectionLength: 3
+  })
+
+  // this is to initialize the first food form on daily intake page
+  $('.select2-intake-foods').select2({
+    placeholder: 'Select a Food.',
+    maximumSelectionLength: 3,
+  })
+
+  //   ** cocoon:after-insert **
+  //   This is a special event that is triggered everytime we
+  //   render/display a form for meal or food selection dynamically
+  //   on daily intake page.
+  //
+  //   We apply the `select2` plugin on our dropdowns to give it
+  //   special features.
+
+  // to render food selection form dynamically for meal creation
+  $('.meal-foods').on('cocoon:after-insert', function() {
+    $('.select2-meal-create').select2({
+      placeholder: 'Select a Food.',
+      maximumSelectionLength: 3,
+    })
+  })
+
+  // to render meal selection form dynamically for daily intake
+  $('.intake_meals').on('cocoon:after-insert', function() {
+    $('.select2-intake-meals').select2({
+      placeholder: 'Select a Meal.',
+      maximumSelectionLength: 3,
+    })
+  })
+
+  // to render food selection form dynamically for daily intake
+  $('.intake_foods').on('cocoon:after-insert', function() {
+    $('.select2-intake-foods').select2({
+      placeholder: 'Select a Food.',
+      maximumSelectionLength: 3,
+    })
+  })
+
+  $('#foods-datatable').dataTable({
+    "processing": true,
+    "serverSide": true,
+    "language": {
+      "zeroRecords": "No available records",
+    },
+    "ajax": {
+      "url": $('#foods-datatable').data('source')
+    },
+    "pagingType": "full_numbers",
+    "columns": [
+      {"data": "id"},
+      {"data": "name"},
+      {"data": "calories"},
+      {"data": "water"},
+      {"data": "proteins"},
+      {"data": "carbs"},
+      {"data": "calcium"},
+      {"data": "phosphorus"},
+      {"data": "sodium"},
+      {"data": "iron"},
+      {"data": "fat"},
+      {"data": "potassium"},
+      {"data": "quantity"},
+    ]
+  });
+})

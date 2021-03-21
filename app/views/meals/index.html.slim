@@ -1,24 +1,26 @@
-h1 Listing meals
+.row
+  .col-6.offset-3
+    h1 Listing meals
+    = link_to 'New Meal', new_meal_path, class: 'btn btn-info mb-5'
+    - if @meals.present?
+      table.table.table-striped.table-responsive.table-hover
+        thead
+          tr
+            th Name
+            th Description
+            th Calories
+            th
+            th
+            th
 
-table
-  thead
-    tr
-      th Name
-      th Description
-      th Time
-
-  tbody
-    - @meals.each do |meal|
-      tr
-        td = meal.name
-        td = meal.description
-        td = meal.time
-        - meal.foods.each do |food|
-          td = food.name
-        td = link_to 'Show', meal
-        td = link_to 'Edit', edit_meal_path(meal)
-        td = link_to 'Destroy', meal, data: { confirm: 'Are you sure?' }, method: :delete
-
-br
-
-= link_to 'New Meal', new_meal_path
+        tbody
+          - @meals.each do |meal|
+            tr
+              td = meal.name
+              td = truncate(meal.description)
+              td = meal.calories
+              td = link_to 'Show', meal
+              td = link_to 'Edit', edit_meal_path(meal)
+              td = link_to 'Destroy', meal, data: { confirm: 'Are you sure?' }, method: :delete
+    - else
+      p.alert.alert-info No meals created

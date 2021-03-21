@@ -1,40 +1,39 @@
-h1
-  = title
-- if foods.present?
+.row.mt-5
+  .col-10.offset-1
+    h1
+      = title
+    - if foods.present?
 
-  table
-    thead
-      tr
-        th Name
-        th Calories
-        th Water
-        th Proteins
-        th Carbs
-        th Calcium
-        th Phosphorus
-        th Sodium
-        th Iron
-        th Fat
-        th Potassium
-        th Quantity
-        th
-        th
-        th
+      table.table.table-striped
+        thead
+          tr
+            th Name
+            th Calories
+            th Water
+            th Proteins
+            th Carbs
+            th Calcium
+            th Phosphorus
+            th Sodium
+            th Iron
+            th Fat
+            th Potassium
+            th Quantity
 
-    tbody
-      - foods.each do |food|
-        tr
-          td = food.name
-          td = food.calories
-          td = food.water
-          td = food.proteins
-          td = food.carbs
-          td = food.calcium
-          td = food.phosphorus
-          td = food.sodium
-          td = food.iron
-          td = food.fat
-          td = food.potassium
-          td = food.quantity
-- else
-  h4 No match found
+        tbody
+          - foods.each do |food|
+            tr
+              td = food.name
+              td = food.calories
+              td = food.water
+              td = food.proteins
+              td = food.carbs
+              td = food.calcium
+              td = food.phosphorus
+              td = food.sodium
+              td = food.iron
+              td = food.fat
+              td = food.potassium
+              td = food.quantity
+    - else
+      h4 No match found

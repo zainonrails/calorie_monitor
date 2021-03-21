@@ -6,40 +6,44 @@
         - @food.errors.full_messages.each do |message|
           li = message
 
-  .field
-    = f.label :name
-    = f.text_field :name
-  .field
-    = f.label :calories
-    = f.text_field :calories
-  .field
-    = f.label :water
-    = f.text_field :water
-  .field
-    = f.label :proteins
-    = f.text_field :proteins
-  .field
-    = f.label :carbs
-    = f.text_field :carbs
-  .field
-    = f.label :calcium
-    = f.text_field :calcium
-  .field
-    = f.label :phosphorus
-    = f.text_field :phosphorus
-  .field
-    = f.label :sodium
-    = f.text_field :sodium
-  .field
-    = f.label :iron
-    = f.text_field :iron
-  .field
-    = f.label :fat
-    = f.text_field :fat
-  .field
-    = f.label :potassium
-    = f.text_field :potassium
-  .field
-    = f.label :quantity
-    = f.text_field :quantity
-  .actions = f.submit
+  .row
+    .col-6
+      .form-group
+        = f.label :name
+        = f.text_field :name, class: 'form-control', required: true
+      .form-group
+        = f.label :calories
+        = f.number_field :calories, class: 'form-control', required: true
+      .form-group
+        = f.label :water
+        = f.number_field :water, class: 'form-control', required: true
+      .form-group
+        = f.label :proteins
+        = f.number_field :proteins, class: 'form-control', required: true
+      .form-group
+        = f.label :carbs
+        = f.number_field :carbs, class: 'form-control', required: true
+      .form-group
+        = f.label :calcium
+        = f.number_field :calcium, class: 'form-control', required: true
+      .form-group
+        = f.label :phosphorus
+        = f.number_field :phosphorus, class: 'form-control', required: true
+      .form-group
+        = f.label :sodium
+        = f.number_field :sodium, class: 'form-control', required: true
+      .form-group
+        = f.label :iron
+        = f.number_field :iron, class: 'form-control', required: true
+      .form-group
+        = f.label :fat
+        = f.number_field :fat, class: 'form-control', required: true
+      .form-group
+        = f.label :potassium
+        = f.number_field :potassium, class: 'form-control', required: true
+      .form-group
+        = f.label :quantity
+        = f.number_field :quantity, class: 'form-control', required: true
+      .form-group
+        = f.submit 'Submit', class: 'btn btn-success mr-2'
+        = link_to 'Back', foods_path, class: 'btn btn-light'

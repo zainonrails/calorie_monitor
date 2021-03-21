@@ -1,4 +1,4 @@
-= form_with model: @intake, method: :post do |f|
+= form_with model: @intake, class: '' do |f|
   - if @intake.errors.any?
     #error_explanation
       h2 = "#{pluralize(@intake.errors.count, "error")} prohibited this intake from being saved:"
@@ -6,24 +6,38 @@
         - @intake.errors.full_messages.each do |message|
           li = message
 
+  .row
+    .col
+      .form-group
+        = f.label :time
+        = f.select :time, meal_time_select, {}, class: 'form-control'
+
+  h3 Add Foods
+  .row.jumbotron
+    .intake_foods.col
+      .links
+        = link_to_add_association 'Add food', f, :eatings, class: 'btn btn-info mb-5 mr-2',
+                data: { association_insertion_method: 'append' }
+      = f.fields_for :eatings do |intake|
+        - if intake.object.eatable.is_a?(Food)
+          = render partial: 'intakes/eating_fields', locals: { f: intake  }
+
+
+  h3 Add Meals
+  .row.jumbotron
+    .col
+      .intake_meals
+        .links
+          = link_to_add_association 'Add meal', f, :eatings, class: 'btn btn-info mb-5 mr-2',
+                  partial: 'intakes/eating_meal_fields',
+                  data: { association_insertion_method: 'append' }
+        = f.fields_for :eatings do |intake|
+          - if intake.object.eatable.is_a?(Meal)
+            = render partial: 'intakes/eating_meal_fields', locals: { f: intake }
+
+
   .form-group
-    = f.label :time
-    = f.select :time, meal_time_select, class: 'form-control'
-
-  .intake_foods
-    = f.fields_for :eatings do |intake|
-      = render partial: 'intakes/eating_fields', locals: { f: intake  }
-    .links
-      = link_to_add_association 'Add food', f, :eatings, class: 'btn btn-info',
-              data: { partial: 'intakes/eating_fields', data_association_insertion_method: 'append' }
-
-
-  #div2
-    .intake_meals
-      = f.fields_for :eatings, Eating.new do |intake|
-        = render partial: 'intakes/eating_meal_fields', locals: { f: intake }
-
-  .form-group
-    = f.submit 'submit', class: 'btn btn-success'
+    = f.submit 'Submit', class: 'btn btn-success mr-2'
+    = link_to 'Back', intakes_path, class: 'btn btn-light'
 
   #dynamic_intake_form

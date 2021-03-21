@@ -1,43 +1,28 @@
-h1 Listing foods
+.row
+  .col-10
+    h1 Listing foods
+    p.text-muted Every food has nutritional value according to 100 grams
+  .col.justify-content-end
+    = link_to 'New Food', new_food_path, class: 'btn btn-info'
 
-table
-  thead
-    tr
-      th Name
-      th Calories
-      th Water
-      th Proteins
-      th Carbs
-      th Calcium
-      th Phosphorus
-      th Sodium
-      th Iron
-      th Fat
-      th Potassium
-      th Quantity
-      th
-      th
-      th
+.row
+  .col
+    table#foods-datatable data-source=foods_path(format: :json)
+      thead
+        tr
+          th ID
+          th Name
+          th Calories
+          th Water
+          th Proteins
+          th Carbs
+          th Calcium
+          th Phosphorus
+          th Sodium
+          th Iron
+          th Fat
+          th Potassium
+          th Quantity
 
-  tbody
-    - @foods.each do |food|
-      tr
-        td = food.name
-        td = food.calories
-        td = food.water
-        td = food.proteins
-        td = food.carbs
-        td = food.calcium
-        td = food.phosphorus
-        td = food.sodium
-        td = food.iron
-        td = food.fat
-        td = food.potassium
-        td = food.quantity
-        td = link_to 'Show', food
-        td = link_to 'Edit', edit_food_path(food)
-        td = link_to 'Destroy', food, data: { confirm: 'Are you sure?' }, method: :delete
+      tbody
 
-br
-
-= link_to 'New Food', new_food_path

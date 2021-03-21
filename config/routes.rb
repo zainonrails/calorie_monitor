@@ -9,13 +9,8 @@ Rails.application.routes.draw do
   get 'profile', to: 'profiles#index'
   resources :foods
   resources :meals
-  resources :foods do
-    collection do
-      get 'bulk_create', to: 'foods#bulk_create'
-    end
-  end
-
-  get 'food_bulk_create', to: 'foods#bulk_create'
+  resources :foods
+  resources :bulk_foods, only: %i[new create]
 
   root to: 'searches#index'
 
@@ -25,6 +20,7 @@ Rails.application.routes.draw do
   devise_for :users, controllers: {
     registrations: 'users/registrations',
     sessions: 'users/sessions',
-    confirmations: 'users/confirmations'
+    confirmations: 'users/confirmations',
+    passwords: 'users/passwords'
   }
 end

@@ -1,0 +1,12 @@
+.row
+  .col-6.offset-3
+    = form_with url: bulk_foods_path, method: :post do |f|
+      .input-group.mb-3
+        .input-group-prepend
+          span#inputGroupFileAddon01.input-group-text Upload
+        .custom-file
+          = f.file_field :file, class: 'custom-file-input'
+          = f.label :choose_file, class: 'custom-file-label'
+
+      .form-group
+        = f.submit 'Submit', class: 'btn btn-success'

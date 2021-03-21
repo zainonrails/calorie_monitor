@@ -15,13 +15,16 @@ module Foods
     end
 
     def call
+      foods = []
       rows = SmarterCSV.process(path, options)
       rows.each do |row|
         food = Food.new(row)
         food.quantity = 100
         food.user_id = user_id
-        errors << food.errors.full_messages unless food.save
+        food.is_default = true
+        foods << food
       end
+      Food.import(foods)
     end
 
     private

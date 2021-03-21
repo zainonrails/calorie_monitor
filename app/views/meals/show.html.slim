@@ -1,6 +1,33 @@
-p#notice = notice
+.row
+  .col-6.offset-3
+    table.table.table-striped.table-responsive.mb-5
+      thead
+        tr
+          th Name
+          th Description
+          th Calories
+
+      tbody
+        tr
+          td = @meal.name
+          td = @meal.description
+          td = @meal.calories
 
 
-=> link_to 'Edit', edit_meal_path(@meal)
-'|
-=< link_to 'Back', meals_path
+    h4 Foods
+    table.table.table-striped.table-responsive
+      thead
+        tr
+          th Name
+          th Quantity
+          th Calories
+
+      tbody
+        - @meal.meal_foods.each do |mf|
+          tr
+            td = mf.food.name
+            td = mf.quantity
+            td = mf.food.calories
+
+    =< link_to 'edit', edit_meal_path(@meal), class: 'btn btn-info'
+    =< link_to 'Back', meals_path, class: 'btn btn-light'

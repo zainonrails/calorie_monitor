@@ -8,6 +8,8 @@ class IntakesController < ApplicationController
 
   # GET /intakes/1 or /intakes/1.json
   def show
+    @foods = @intake.foods
+    @meals = @intake.meals
   end
 
   # GET /intakes/new
@@ -18,11 +20,17 @@ class IntakesController < ApplicationController
       'default' => Food.format_for_dropdown(Food.default_foods),
       'user saved' => Food.format_for_dropdown(Food.user_foods(current_user.id))
     }
-    @meals = Meal.user_meals
+    @meals = Meal.user_meals(current_user.id)
   end
 
   # GET /intakes/1/edit
   def edit
+    @foods = {
+      'default' => Food.format_for_dropdown(Food.default_foods),
+      'user saved' => Food.format_for_dropdown(Food.user_foods(current_user.id))
+    }
+    @meals = Meal.user_meals(current_user.id)
+    @intake_meals = @intake.eatings.meals || Eating.new(eatable_type: 'Meal')
   end
 
   # POST /intakes or /intakes.json
@@ -31,7 +39,8 @@ class IntakesController < ApplicationController
 
     respond_to do |format|
       if @intake.save
-        format.html { redirect_to @intake, notice: 'Intake was successfully created.' }
+        # @intake.calculate_calories
+        format.html { redirect_to intakes_url, notice: 'Intake was successfully created.' }
         format.json { render :show, status: :created, location: @intake }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -71,6 +80,6 @@ class IntakesController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def intake_params
-    params.require(:intake).permit(:calories, :time, eatings_attributes: %i[eatable_id eatable_type quantity])
+    params.require(:intake).permit(:calories, :time, eatings_attributes: %i[id eatable_id eatable_type quantity _destroy])
   end
 end

@@ -1,10 +1,14 @@
 class FoodsController < ApplicationController
   before_action :set_food, only: %i[show edit update destroy]
+  skip_before_action :authenticate_user!, only: %i[index show]
 
   # GET /foods or /foods.json
   def index
-    # implement datatable here
     @foods = Food.all
+    respond_to do |format|
+      format.html
+      format.json { render json: FoodDatatable.new(params, view_context: view_context) }
+    end
   end
 
   # GET /foods/1 or /foods/1.json
@@ -20,7 +24,7 @@ class FoodsController < ApplicationController
 
   # POST /foods or /foods.json
   def create
-    @food = current_user.foods.build(food_params)
+    @food = current_user.foods.build(food_params.merge!(is_default: true))
 
     respond_to do |format|
       if @food.save

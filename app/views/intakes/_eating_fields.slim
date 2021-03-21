@@ -1,11 +1,17 @@
-.nested-fields
+.nested-fields.mt-3
   .form-group
     = f.hidden_field :eatable_type, value: 'Food'
-    = f.label :food
-    = f.select('eatable_id', grouped_options_for_select(@foods, nil), { include_blank: true }, class: 'select2-intake-foods form-control')
+    = f.label :food, class: 'mr-2'
+    = f.select('eatable_id', grouped_options_for_select(@foods, f.object.eatable_id.presence), { include_blank: true }, required: true, class: 'select2-intake-foods form-control')
+
 
   .form-group
     = f.label :quantity
-    = f.number_field :quantity
+    = f.number_field :quantity, required: true, class: 'form-control'
 
-  = link_to_remove_association "remove food", f
+  - if f.object.new_record?
+    = link_to_remove_association 'remove food', f, class: 'btn btn-sm btn-danger'
+  - else
+    .form-check.form-check-inline
+      = f.check_box :_destroy, class: 'form-check-input'
+      = f.label :_destroy, 'remove food', class: 'form-check-label'

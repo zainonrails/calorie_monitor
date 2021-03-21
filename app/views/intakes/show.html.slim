@@ -1,21 +1,54 @@
-p#notice = notice
+.row.mb-5
+  .col-6.offset-3
+    h4 Intake
+    table.table.table-striped.table-responsive.mb-5
+      thead
+        tr
+          th Time
+          th Calories
 
-p
-  strong Eatable:
-  = @intake.eatable_id
-p
-  strong Eatable type:
-  = @intake.eatable_type
-p
-  strong Quantity:
-  = @intake.quantity
-p
-  strong Calories:
-  = @intake.calories
-p
-  strong Time:
-  = @intake.time
+      tbody
+        tr
+          td = @intake.time
+          td = @intake.calories
 
-=> link_to 'Edit', edit_intake_path(@intake)
-'|
-=< link_to 'Back', intakes_path
+    h4 Meals
+    - if @meals.present?
+      table.table.table-striped.table-responsive.mb-5
+        thead
+          tr
+            th Name
+            th Description
+            th Calories
+
+        tbody
+          - @meals.each do |meal|
+            tr
+              td = meal.name
+              td = meal.description
+              td = meal.calories
+    - else
+      p.alert.alert-info.mb-5 No meals found
+
+
+
+    h4 Foods
+    - if @foods.present?
+      table.table.table-striped.table-responsive.mb-5
+        thead
+          tr
+            th Name
+            th Calories
+
+        tbody
+          - @foods.each do |food|
+            tr
+              td = food.name
+              td = food.calories
+    - else
+      p.alert.alert-info.mb-5 No foods found
+
+    = link_to 'Edit', edit_intake_path(@intake), class: 'btn btn-info mr-2'
+    = link_to 'Destroy', @intake, data: { confirm: 'Are you sure?' }, method: :delete, class: 'btn btn-danger mr-2'
+    = link_to 'back', intakes_path, class: 'btn btn-light'
+

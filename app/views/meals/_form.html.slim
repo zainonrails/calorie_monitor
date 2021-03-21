@@ -6,20 +6,26 @@
         - @meal.errors.full_messages.each do |message|
           li = message
 
-  .field
-    = f.label :name
-    = f.text_field :name, class: 'form-control'
-  .field
-    = f.label :description
-    = f.text_area :description
-  / .field
-  /   = f.label :time
-  /   = f.select :time, meal_time_select, include_blank: true
-  .meal-foods
-    = f.fields_for :meal_foods do |meal_food_form|
-      = render partial: 'meals/meal_food_fields', locals: { f: meal_food_form  }
-    .links
-      = link_to_add_association 'Add food', f, :meal_foods, class: 'btn btn-info',
-              data: { partial: 'meals/meal_food_fields', data_association_insertion_method: 'prepend' }
+  .row
+    .col
+      .form-group
+        = f.label :name
+        = f.text_field :name, class: 'form-control', required: true
 
-  .actions = f.submit
+      .form-group
+        = f.label :description
+        = f.text_area :description, class: 'form-control'
+
+  .row
+    .col
+      .meal-foods
+        .links
+          = link_to_add_association 'Add food', f, :meal_foods, class: 'btn btn-info mb-4',
+                  data: { partial: 'meals/meal_food_fields', data_association_insertion_method: 'append' }
+
+        = f.fields_for :meal_foods do |meal_food_form|
+          = render partial: 'meals/meal_food_fields', locals: { f: meal_food_form  }
+
+  .form-group
+    = f.submit 'Submit', class: 'btn btn-success mr-2'
+    = link_to 'Back', meals_path, class: 'btn btn-light'

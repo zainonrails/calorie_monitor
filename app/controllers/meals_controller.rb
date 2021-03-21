@@ -3,7 +3,7 @@ class MealsController < ApplicationController
 
   # GET /meals or /meals.json
   def index
-    @meals = Meal.all
+    @meals = current_user.meals
   end
 
   # GET /meals/1 or /meals/1.json
@@ -18,6 +18,7 @@ class MealsController < ApplicationController
 
   # GET /meals/1/edit
   def edit
+    @foods = Food.select('id', 'name AS text')
   end
 
   # POST /meals or /meals.json
@@ -40,6 +41,7 @@ class MealsController < ApplicationController
   def update
     respond_to do |format|
       if @meal.update(meal_params)
+        @meal.calculate_calories
         format.html { redirect_to @meal, notice: "Meal was successfully updated." }
         format.json { render :show, status: :ok, location: @meal }
       else
@@ -67,6 +69,6 @@ class MealsController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def meal_params
-    params.require(:meal).permit(:name, :description, :time, meal_foods_attributes: %i[food_id quantity])
+    params.require(:meal).permit(:name, :description, :time, meal_foods_attributes: %i[id food_id quantity _destroy])
   end
 end
