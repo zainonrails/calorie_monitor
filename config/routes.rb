@@ -7,10 +7,12 @@ Rails.application.routes.draw do
   end
 
   get 'profile', to: 'profiles#index'
+  get 'user_foods', to: 'foods#user_foods'
   resources :foods
   resources :meals
   resources :foods
   resources :bulk_foods, only: %i[new create]
+  resources :stats, only: %i[index]
 
   root to: 'searches#index'
 

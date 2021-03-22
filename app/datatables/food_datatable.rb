@@ -50,7 +50,7 @@ class FoodDatatable < AjaxDatatablesRails::ActiveRecord
   end
 
   def get_raw_records
-    Food.all
+    Food.where(is_default: true)
   end
 
 end

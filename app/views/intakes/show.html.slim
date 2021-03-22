@@ -5,11 +5,13 @@
       thead
         tr
           th Time
+          th Date
           th Calories
 
       tbody
         tr
           td = @intake.time
+          td = @intake.date&.strftime('%d %b %Y')
           td = @intake.calories
 
     h4 Meals
@@ -18,14 +20,12 @@
         thead
           tr
             th Name
-            th Description
             th Calories
 
         tbody
           - @meals.each do |meal|
             tr
               td = meal.name
-              td = meal.description
               td = meal.calories
     - else
       p.alert.alert-info.mb-5 No meals found

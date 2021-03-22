@@ -49,6 +49,7 @@
     <orderEntry type="library" scope="PROVIDED" name="bundler (v2.2.14, RVM: ruby-2.6.6) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="byebug (v11.1.3, RVM: ruby-2.6.6) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="capybara (v3.35.3, RVM: ruby-2.6.6) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="chartjs-ror (v3.6.4, RVM: ruby-2.6.6) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="childprocess (v3.0.0, RVM: ruby-2.6.6) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="chromedriver-helper (v2.1.1, RVM: ruby-2.6.6) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="cocoon (v1.2.15, RVM: ruby-2.6.6) [gem]" level="application" />

@@ -3,7 +3,7 @@ class MealsController < ApplicationController
 
   # GET /meals or /meals.json
   def index
-    @meals = current_user.meals
+    @meals = current_user.meals.order('id desc')
   end
 
   # GET /meals/1 or /meals/1.json
@@ -13,12 +13,19 @@ class MealsController < ApplicationController
   # GET /meals/new
   def new
     @meal = Meal.new
-    @foods = Food.select('id', 'name AS text')
+    @foods = {
+      'default' => Food.format_for_dropdown(Food.default_foods),
+      'user saved' => Food.format_for_dropdown(Food.user_foods(current_user.id))
+    }
+    # @foods = Food.select('id', 'name AS text')
   end
 
   # GET /meals/1/edit
   def edit
-    @foods = Food.select('id', 'name AS text')
+    @foods = {
+      'default' => Food.format_for_dropdown(Food.default_foods),
+      'user saved' => Food.format_for_dropdown(Food.user_foods(current_user.id))
+    }
   end
 
   # POST /meals or /meals.json

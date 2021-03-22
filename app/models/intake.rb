@@ -15,8 +15,10 @@ class Intake < ApplicationRecord
 
   def calculate_calories
     sum = 0
-    foods.each do |f|
-      sum += ((quantity.to_f / f.food.quantity).to_f * f.food.calories)
+    eatings.each do |f|
+      if f.eatable_type == 'Food'
+        sum += ((f.quantity.to_f / f.eatable.quantity).to_f * f.eatable.calories)
+      end
     end
     sum += meals.sum(&:calories)
     self.calories = sum
@@ -30,5 +32,11 @@ class Intake < ApplicationRecord
     when 'Meal'
       attributes['eatable_id'].blank?
     end
+  end
+
+  def self.group_by_data(start_date, end_date, group_by, user_id)
+    where(user_id: user_id).select('sum(calories) as calories', "DATE_TRUNC('#{group_by}', date) as date")
+                           .where(date: start_date..end_date)
+                           .group("DATE_TRUNC('#{group_by}', date)").to_a
   end
 end

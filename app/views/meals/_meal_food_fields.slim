@@ -1,7 +1,7 @@
 .nested-fields.mt-5.jumbotron
   .form-group
     = f.label :food_id
-    = f.select('food_id', food_select(@foods), { include_blank: true }, required: true, class: 'select2-meal-create form-control')
+    = f.select('food_id', grouped_options_for_select(@foods, f.object.food_id.presence), { include_blank: true }, required: true, class: 'select2-meal-create form-control')
 
   .form-group
     = f.label :quantity
@@ -10,5 +10,6 @@
   - if f.object.new_record?
     = link_to_remove_association "remove food", f, class: 'btn btn-sm btn-danger mb-3'
   - else
-    = f.check_box :_destroy
-    = f.label :_destroy, 'remove food'
+    .form-check.form-check-inline
+      = f.check_box :_destroy, class: 'form-check-input'
+      = f.label :_destroy, 'remove food', class: 'form-check-label'

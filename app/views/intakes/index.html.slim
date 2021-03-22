@@ -8,6 +8,7 @@
           tr
             th ID
             th Time
+            th Date
             th Calories
             th
             th
@@ -18,6 +19,7 @@
             tr
               td = intake.id
               td = intake.time
+              td = intake.date&.strftime('%d %b %Y') || 'N/A'
               td = intake.calories || 'N/A'
               td = link_to 'Show', intake
               td = link_to 'Edit', edit_intake_path(intake)

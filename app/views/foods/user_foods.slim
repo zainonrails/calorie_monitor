@@ -1,0 +1,47 @@
+.row
+  .col-10
+    h1 Listing foods
+  .col.justify-content-end
+    = link_to 'New Food', new_food_path, class: 'btn btn-info'
+
+.row
+  .col
+    table.table.table-striped.table-responsive
+      thead
+        tr
+          th ID
+          th Name
+          th Calories
+          th Water
+          th Proteins
+          th Fat
+          th Carbohydrates
+          th Calcium
+          th Phosphorus
+          th Iron
+          th Sodium
+          th Potassium
+          th Quantity
+          th
+          th
+
+      tbody
+        - @foods.each do |food|
+          tr
+            td = food.id
+            td = food.name
+            td = food.calories
+            td = food.water
+            td = food.proteins
+            td = food.fat
+            td = food.carbs
+            td = food.calcium
+            td = food.phosphorus
+            td = food.iron
+            td = food.sodium
+            td = food.potassium
+            td = food.quantity
+            / td = link_to 'Show', food_path(food), class: ''
+            td = link_to 'Edit', edit_food_path(food), class: 'btn btn-info'
+            td = link_to 'Delete', food_path(food), method: :delete, class: 'btn btn-danger'
+

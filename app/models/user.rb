@@ -8,4 +8,8 @@ class User < ApplicationRecord
   has_many :meals
   has_many :intakes
   accepts_nested_attributes_for :intakes
+
+  def admin?
+    role == 'admin'
+  end
 end

@@ -10,7 +10,10 @@
     .col
       .form-group
         = f.label :time
-        = f.select :time, meal_time_select, {}, class: 'form-control'
+        = f.select :time, meal_time_select, {}, class: 'form-control', required: true
+      .form-group
+        = f.label :date
+        = f.date_field :date, class: 'form-control', required: true
 
   h3 Add Foods
   .row.jumbotron

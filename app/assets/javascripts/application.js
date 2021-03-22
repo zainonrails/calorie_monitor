@@ -21,6 +21,7 @@
 //= require cocoon
 //= require jquery-ui/widgets/autocomplete
 //= require autocomplete-rails
+//= require Chart.min
 //= require_tree .
 
 
@@ -93,12 +94,12 @@ document.addEventListener("turbolinks:load", () => {
       {"data": "calories"},
       {"data": "water"},
       {"data": "proteins"},
+      {"data": "fat"},
       {"data": "carbs"},
       {"data": "calcium"},
       {"data": "phosphorus"},
-      {"data": "sodium"},
       {"data": "iron"},
-      {"data": "fat"},
+      {"data": "sodium"},
       {"data": "potassium"},
       {"data": "quantity"},
     ]

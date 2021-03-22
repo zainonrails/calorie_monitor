@@ -4,7 +4,14 @@ class FoodsController < ApplicationController
 
   # GET /foods or /foods.json
   def index
-    @foods = Food.all
+    respond_to do |format|
+      format.html
+      format.json { render json: FoodDatatable.new(params, view_context: view_context) }
+    end
+  end
+
+  def user_foods
+    @foods = Food.where(user_id: current_user.id, is_default: false)
     respond_to do |format|
       format.html
       format.json { render json: FoodDatatable.new(params, view_context: view_context) }
@@ -24,7 +31,9 @@ class FoodsController < ApplicationController
 
   # POST /foods or /foods.json
   def create
-    @food = current_user.foods.build(food_params.merge!(is_default: true))
+    byebug
+    admin_options = current_user.admin? ? { is_default: true } : { is_default: false }
+    @food = current_user.foods.build(food_params.merge!(admin_options))
 
     respond_to do |format|
       if @food.save

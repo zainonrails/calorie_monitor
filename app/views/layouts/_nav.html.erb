@@ -17,7 +17,10 @@
           <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Foods</a>
           <div class="dropdown-menu">
             <a class="dropdown-item" href=<%= foods_path %> >Food List</a>
-            <a class="dropdown-item" href=<%= new_bulk_food_path %>> Bulk Import Foods</a>
+            <a class="dropdown-item" href=<%= user_foods_path %> >Your Foods</a>
+            <% if current_user.admin? %>
+              <a class="dropdown-item" href=<%= new_bulk_food_path %>> Bulk Import Foods</a>
+            <% end %>
           </div>
         </li>
         <li class="nav-item">
@@ -35,6 +38,9 @@
       <% else %>
         <li class="nav-item active">
           <a class="nav-link active" href="/" >Home</a>
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link active" href=<%= foods_path %> >Foods</a>
         </li>
       <% end %>
     </ul>

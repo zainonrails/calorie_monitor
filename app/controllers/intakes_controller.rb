@@ -3,7 +3,7 @@ class IntakesController < ApplicationController
 
   # GET /intakes or /intakes.json
   def index
-    @intakes = Intake.all
+    @intakes = current_user.intakes.order('id desc')
   end
 
   # GET /intakes/1 or /intakes/1.json
@@ -39,7 +39,7 @@ class IntakesController < ApplicationController
 
     respond_to do |format|
       if @intake.save
-        # @intake.calculate_calories
+        @intake.calculate_calories
         format.html { redirect_to intakes_url, notice: 'Intake was successfully created.' }
         format.json { render :show, status: :created, location: @intake }
       else
@@ -53,6 +53,7 @@ class IntakesController < ApplicationController
   def update
     respond_to do |format|
       if @intake.update(intake_params)
+        @intake.calculate_calories
         format.html { redirect_to @intake, notice: 'Intake was successfully updated.' }
         format.json { render :show, status: :ok, location: @intake }
       else
@@ -80,6 +81,6 @@ class IntakesController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def intake_params
-    params.require(:intake).permit(:calories, :time, eatings_attributes: %i[id eatable_id eatable_type quantity _destroy])
+    params.require(:intake).permit(:calories, :time, :date, eatings_attributes: %i[id eatable_id eatable_type quantity _destroy])
   end
 end
