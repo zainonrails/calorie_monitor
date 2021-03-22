@@ -31,7 +31,6 @@ class FoodsController < ApplicationController
 
   # POST /foods or /foods.json
   def create
-    byebug
     admin_options = current_user.admin? ? { is_default: true } : { is_default: false }
     @food = current_user.foods.build(food_params.merge!(admin_options))
 
@@ -65,17 +64,6 @@ class FoodsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to foods_url, notice: 'Food was successfully destroyed.' }
       format.json { head :no_content }
-    end
-  end
-
-  def bulk_create
-    res = ::Foods::Importer.call('public/foods.csv', current_user.id)
-    respond_to do |format|
-      if res.errors.present?
-        format.html { redirect_to foods_url, notice: 'Something went wrong.' }
-      else
-        format.html { redirect_to foods_url, notice: 'Foods were successfully imported.' }
-      end
     end
   end
 

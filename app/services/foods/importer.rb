@@ -32,7 +32,9 @@ module Foods
     def options
       {
         required_headers: headers,
-        key_mapping: { carbohydrates: :carbs, food_name: :name }
+        key_mapping: { carbohydrates: :carbs, food_name: :name },
+        invalid_byte_sequence: ' ',
+        file_encoding: 'utf-8', verbose: true, force_utf8: true
       }
     end
 
