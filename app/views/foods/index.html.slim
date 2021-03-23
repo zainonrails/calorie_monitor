@@ -2,26 +2,23 @@
   .col-10
     h1 Listing foods
     p.text-muted Every food has nutritional value according to 100 grams
-  .col.justify-content-end
-    = link_to 'New Food', new_food_path, class: 'btn btn-info'
 
 .row
   .col
     table#foods-datatable data-source=foods_path(format: :json)
       thead
         tr
-          th ID
           th Name
-          th Calories
-          th Water
-          th Proteins
-          th Fat
-          th Carbohydrates
-          th Calcium
-          th Phosphorus
-          th Iron
-          th Sodium
-          th Potassium
+          th Calories (Kcal)
+          th Water (%)
+          th Proteins (g)
+          th Fat (g)
+          th Carbohydrates (g)
+          th Calcium (mg)
+          th Phosphorus (mg)
+          th Iron (mg)
+          th Sodium (mg)
+          th Potassium (mg)
           th Quantity
 
       tbody

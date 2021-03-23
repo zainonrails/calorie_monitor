@@ -6,7 +6,6 @@
       table.table.table-striped.table-responsive.table-hover
         thead
           tr
-            th ID
             th Time
             th Date
             th Calories
@@ -17,12 +16,11 @@
         tbody
           - @intakes.each do |intake|
             tr
-              td = intake.id
               td = intake.time
               td = intake.date&.strftime('%d %b %Y') || 'N/A'
               td = intake.calories || 'N/A'
               td = link_to 'Show', intake
               td = link_to 'Edit', edit_intake_path(intake)
-              td = link_to 'Destroy', intake, data: { confirm: 'Are you sure?' }, method: :delete
+              td = link_to 'Delete', intake, data: { confirm: 'Are you sure?' }, method: :delete
     -else
       p.alert.alert-info No intakes created

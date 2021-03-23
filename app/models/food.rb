@@ -1,4 +1,8 @@
 class Food < ApplicationRecord
+  include PgSearch::Model
+  pg_search_scope :search, against: :name, using: {
+    tsearch: {dictionary: "english", any_word: true }
+  }, ignoring: :accents
   belongs_to :user
   has_many :meal_foods
   has_many :meals, through: :meal_foods

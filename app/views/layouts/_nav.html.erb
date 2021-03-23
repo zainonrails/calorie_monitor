@@ -11,30 +11,11 @@
           <a class="nav-link active" href="/" >Home</a>
         </li>
         <li class="nav-item active">
-          <a class="nav-link active" href=<%= profile_path %> >Profile</a>
+          <a class="nav-link active" href=<%= foods_path %> >Food Nutritional Table</a>
         </li>
-        <li class="nav-item active dropdown">
-          <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Foods</a>
-          <div class="dropdown-menu">
-            <a class="dropdown-item" href=<%= foods_path %> >Food List</a>
-            <a class="dropdown-item" href=<%= user_foods_path %> >Your Foods</a>
-            <% if current_user.admin? %>
-              <a class="dropdown-item" href=<%= new_bulk_food_path %>> Bulk Import Foods</a>
-            <% end %>
-          </div>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link active" href=<%= meals_path %> >Meals</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link active" href=<%= intakes_path %> >Daily Intakes</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#"><%= current_user.name || 'Username' %></a>
-        </li>
-        <li>
-          <%= link_to 'Logout', destroy_user_session_path, method: :delete, class: 'nav-link' %>
-        </li>
+
+
+
       <% else %>
         <li class="nav-item active">
           <a class="nav-link active" href="/" >Home</a>
@@ -44,7 +25,17 @@
         </li>
       <% end %>
     </ul>
-    <% unless user_signed_in? %>
+    <% if user_signed_in? %>
+      <span class="navbar-text">
+        <a class="nav-link active" href="#"><%= current_user.name || 'Username' %></a>
+      </span>
+      <span class="navbar-text">
+        <a class="nav-link active" href=<%= profile_path %> >Profile</a>
+      </span>
+      <span class="navbar-text">
+        <%= link_to 'Logout', destroy_user_session_path, method: :delete, class: 'nav-link active' %>
+      </span>
+    <% else %>
       <span class="navbar-text">
         <a class="nav-link active" href=<%= new_user_session_path %> >Login</a>
       </span>

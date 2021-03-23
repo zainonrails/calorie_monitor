@@ -25,7 +25,7 @@
           tr
             td = mf.food.name
             td = mf.quantity
-            td = mf.food.calories
+            td = number_with_precision(food_calorie(mf), precision: 1)
 
     =< link_to 'edit', edit_meal_path(@meal), class: 'btn btn-info'
     =< link_to 'Back', meals_path, class: 'btn btn-light'

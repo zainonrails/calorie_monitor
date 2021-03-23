@@ -19,6 +19,6 @@
               td = meal.calories
               td = link_to 'Show', meal
               td = link_to 'Edit', edit_meal_path(meal)
-              td = link_to 'Destroy', meal, data: { confirm: 'Are you sure?' }, method: :delete
+              td = link_to 'Delete', meal, data: { confirm: 'Are you sure?' }, method: :delete
     - else
       p.alert.alert-info No meals created

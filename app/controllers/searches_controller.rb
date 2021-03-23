@@ -4,7 +4,7 @@ class SearchesController < ApplicationController
   def index; end
 
   def search
-    @foods = Food.where('name ILIKE ?', "%#{params[:query]}%").where(is_default: true)
+    @foods = Food.where('unaccent(name) ILIKE unaccent(?)', "%#{params[:query]}%").where(is_default: true)
     @user_foods = if user_signed_in?
                     Food.where('name ILIKE ?', "%#{params[:query]}%").where(is_default: false, user_id: current_user.id)
                   end

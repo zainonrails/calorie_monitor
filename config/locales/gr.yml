@@ -1,0 +1,4 @@
+i18n:
+  transliterate:
+    rule:
+      ώ: 'ω'

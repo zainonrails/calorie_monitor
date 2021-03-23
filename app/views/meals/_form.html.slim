@@ -15,12 +15,11 @@
   .row
     .col
       .meal-foods
-        .links
-          = link_to_add_association 'Add food', f, :meal_foods, class: 'btn btn-info mb-4',
-                  data: { partial: 'meals/meal_food_fields', association_insertion_method: 'append' }
-
         = f.fields_for :meal_foods do |meal_food_form|
           = render partial: 'meals/meal_food_fields', locals: { f: meal_food_form  }
+        .links
+          = link_to_add_association 'Add food', f, :meal_foods, class: 'btn btn-info mb-4',
+                  data: { partial: 'meals/meal_food_fields', association_insertion_method: 'prepend' }
 
   .form-group
     = f.submit 'Submit', class: 'btn btn-success mr-2'

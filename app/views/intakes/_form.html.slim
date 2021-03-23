@@ -18,25 +18,25 @@
   h3 Add Foods
   .row.jumbotron
     .intake_foods.col
-      .links
-        = link_to_add_association 'Add food', f, :eatings, class: 'btn btn-info mb-5 mr-2',
-                data: { association_insertion_method: 'append' }
       = f.fields_for :eatings do |intake|
-        - if intake.object.eatable.is_a?(Food)
-          = render partial: 'intakes/eating_fields', locals: { f: intake  }
+        - if intake.object.eatable.is_a?(Food) || @intake.new_record?
+          = render partial: 'intakes/eating_fields', locals: { f: intake }
+      .links
+        = link_to_add_association 'Add new food', f, :eatings, class: 'btn btn-info mt-5 mr-2',
+                data: { association_insertion_method: 'prepend' }
 
 
   h3 Add Meals
   .row.jumbotron
     .col
       .intake_meals
-        .links
-          = link_to_add_association 'Add meal', f, :eatings, class: 'btn btn-info mb-5 mr-2',
-                  partial: 'intakes/eating_meal_fields',
-                  data: { association_insertion_method: 'append' }
         = f.fields_for :eatings do |intake|
-          - if intake.object.eatable.is_a?(Meal)
+          - if intake.object.eatable.is_a?(Meal) || @intake.new_record?
             = render partial: 'intakes/eating_meal_fields', locals: { f: intake }
+        .links
+          = link_to_add_association 'Add new meal', f, :eatings, class: 'btn btn-info mt-5 mr-2',
+                  partial: 'intakes/eating_meal_fields',
+                  data: { association_insertion_method: 'prepend' }
 
 
   .form-group

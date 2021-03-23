@@ -89,7 +89,6 @@ document.addEventListener("turbolinks:load", () => {
     },
     "pagingType": "full_numbers",
     "columns": [
-      {"data": "id"},
       {"data": "name"},
       {"data": "calories"},
       {"data": "water"},

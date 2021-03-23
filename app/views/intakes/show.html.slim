@@ -49,6 +49,6 @@
       p.alert.alert-info.mb-5 No foods found
 
     = link_to 'Edit', edit_intake_path(@intake), class: 'btn btn-info mr-2'
-    = link_to 'Destroy', @intake, data: { confirm: 'Are you sure?' }, method: :delete, class: 'btn btn-danger mr-2'
+    = link_to 'Delete', @intake, data: { confirm: 'Are you sure?' }, method: :delete, class: 'btn btn-danger mr-2'
     = link_to 'back', intakes_path, class: 'btn btn-light'
 

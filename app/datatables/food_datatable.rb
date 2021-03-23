@@ -13,8 +13,7 @@ class FoodDatatable < AjaxDatatablesRails::ActiveRecord
     # Declare strings in this format: ModelName.column_name
     # or in aliased_join_table.column_name format
     @view_columns ||= {
-      id: { source: 'Food.id', cond: :eq },
-      name: { source: 'Food.name', cond: :like },
+      name: { source: 'Food.name', cond: search_name },
       calories: { source: 'Food.calories', cond: :eq },
       water: { source: 'Food.water', cond: :eq },
       proteins: { source: 'Food.proteins', cond: :eq },
@@ -32,7 +31,6 @@ class FoodDatatable < AjaxDatatablesRails::ActiveRecord
   def data
     records.map do |record|
       {
-        id: record.id,
         name: link_to(record.name, food_path(record.id)),
         calories: record.calories,
         water: record.water,
@@ -51,6 +49,10 @@ class FoodDatatable < AjaxDatatablesRails::ActiveRecord
 
   def get_raw_records
     Food.where(is_default: true)
+  end
+
+  def search_name
+    ->(column, value) { ::Arel::Nodes::SqlLiteral.new(column.field.to_s).matches("%#{column.search.value}%") }
   end
 
 end
