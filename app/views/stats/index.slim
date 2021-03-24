@@ -17,4 +17,4 @@
   .col-6.offset-2
     h4 Your caloric intake
     .chart-container style="height: 400px; width: 1000px;"
-      = line_chart @graph.data_set[:graph], @graph.data_set[:options]
+      = bar_chart @graph.data_set[:graph], @graph.data_set[:options]

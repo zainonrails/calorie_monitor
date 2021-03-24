@@ -39,7 +39,16 @@ module Stats
 
       # responsible for creating labels from raw_data
       def create_graph_labels
-        data.map { |d| d.date.strftime('%b %d, %Y') }
+        case group_by
+        when 'month'
+          data.map { |d| d.date.strftime('%b %Y') }
+        when 'day'
+          data.map { |d| d.date.strftime('%b %d, %Y') }
+        when 'year'
+          data.map { |d| d.date.strftime('%Y') }
+        else
+          data.map { |d| d.date.strftime('%b %d, %Y') }
+        end
       end
 
       # responsible to create data for graph from raw_data
@@ -54,11 +63,11 @@ module Stats
             datasets: [
               {
                 label: 'Calorie Intake Chart',
-                backgroundColor: 'rgba(220,220,220,0.2)',
+                backgroundColor: 'rgba(60,220,220,0.2)',
                 borderColor: 'rgba(75, 192, 192, 1)',
                 data: create_graph_data,
                 fill: true,
-                pointBackgroundColor: 'rgba(75, 192, 192, 1)'
+                pointBackgroundColor: 'rgba(40, 167, 69, 1)'
               }
             ]
           },
@@ -75,7 +84,17 @@ module Stats
       def options
         {
           responsive: true,
-          maintainAspectRatio: false
+          maintainAspectRatio: false,
+          scales: {
+            yAxes: [{
+              ticks: {
+                beginAtZero: true
+              }
+            }],
+            xAxes: [{
+              beginAtZero: true
+            }]
+          }
         }
       end
     end
