@@ -92,7 +92,8 @@ module Stats
               }
             }],
             xAxes: [{
-              beginAtZero: true
+              beginAtZero: true,
+              barPercentage: 0.2
             }]
           }
         }
